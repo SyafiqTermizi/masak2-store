@@ -9,7 +9,7 @@ const group = new schema.Entity("group", {
 const recipe = new schema.Entity("recipe", {
   groups: [group],
   steps: [step],
-  media: [media],
+  medias: [media],
 });
 
 export const recipes = [recipe];
