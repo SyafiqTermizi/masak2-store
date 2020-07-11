@@ -2,6 +2,7 @@ export interface Group {
   id: number;
   name: string;
   recipe: number;
+  ingredients: number[];
 }
 
 export interface GroupState {
@@ -18,6 +19,7 @@ export const initialState: GroupState = {
     id: 1,
     name: "",
     recipe: 1,
+    ingredients: [],
   },
 };
 

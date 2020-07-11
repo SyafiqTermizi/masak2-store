@@ -18,6 +18,9 @@ export interface Recipe {
   rating: number;
   difficulty: number;
   created_by: string;
+  groups: number[];
+  medias: number[];
+  steps: number[];
 }
 
 export interface RecipeState {
@@ -37,6 +40,9 @@ const initialState = {
     rating: 1,
     difficulty: 1,
     created_by: "",
+    groups: [],
+    medias: [],
+    steps: [],
   },
 };
 
