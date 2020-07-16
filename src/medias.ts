@@ -1,6 +1,8 @@
 export interface Media {
   media_type: string;
   media: string;
+  recipe: number;
+  id: number;
 }
 
 export interface MediaState {
@@ -16,6 +18,8 @@ export const initialState: MediaState = {
   "1": {
     media_type: "",
     media: "",
+    id: 1,
+    recipe: 1,
   },
 };
 
