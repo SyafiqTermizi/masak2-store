@@ -2,7 +2,7 @@ import axios from "axios";
 import { normalize } from "normalizr";
 import { Dispatch } from "redux";
 
-import { recipes as recipeSchema } from "./normalizer";
+import { recipes as recipesSchema, recipe as recipeSchema } from "./normalizer";
 import { receiveMedias, initialState as initialMedia } from "./medias";
 import { receiveGroups, initialState as initialGroup } from "./groups";
 import { receiveSteps, initialState as initialStep } from "./steps";
@@ -47,12 +47,26 @@ const initialState = {
 };
 
 export const receiveRecipes = (recipes: RecipeState) => ({
-  type: "RECEIVE_RECIPE",
+  type: "RECEIVE_RECIPES",
   payload: recipes,
 });
 
-export const retrieveRecipe = () => (dispatch: Dispatch) => {
+export const retrieveRecipes = () => (dispatch: Dispatch) => {
   return axios.get("http://localhost:8000/api/recipes").then((res) => {
+    const { recipe, media, group, ingredient, step } = normalize(
+      res.data,
+      recipesSchema,
+    ).entities;
+    dispatch(receiveMedias(media || initialMedia));
+    dispatch(receiveGroups(group || initialGroup));
+    dispatch(receiveIngredients(ingredient || initialIngredient));
+    dispatch(receiveSteps(step || initialStep));
+    return dispatch(receiveRecipes(recipe || initialState));
+  });
+};
+
+export const retrieveRecipe = (id: number) => (dispatch: Dispatch) => {
+  return axios.get(`http://localhost:8000/api/recipes/${id}`).then((res) => {
     const { recipe, media, group, ingredient, step } = normalize(
       res.data,
       recipeSchema,
@@ -67,7 +81,7 @@ export const retrieveRecipe = () => (dispatch: Dispatch) => {
 
 export const reducer = (state = initialState, action: Action): RecipeState => {
   switch (action.type) {
-    case "RECEIVE_RECIPE":
+    case "RECEIVE_RECIPES":
       return { ...state, ...action.payload };
     default:
       return state;

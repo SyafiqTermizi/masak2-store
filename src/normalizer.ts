@@ -6,7 +6,7 @@ const step = new schema.Entity("step");
 const group = new schema.Entity("group", {
   ingredients: [ingredient],
 });
-const recipe = new schema.Entity("recipe", {
+export const recipe = new schema.Entity("recipe", {
   groups: [group],
   steps: [step],
   medias: [media],
