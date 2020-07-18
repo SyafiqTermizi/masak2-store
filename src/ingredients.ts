@@ -1,5 +1,3 @@
-import { retrieveRecipe } from "./recipes";
-
 export interface Ingredient {
   id: number;
   group: number;
