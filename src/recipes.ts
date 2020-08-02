@@ -51,6 +51,22 @@ export const receiveRecipes = (recipes: RecipeState) => ({
   payload: recipes,
 });
 
+export const searchRecipe = (searchTerm: string) => (dispatch: Dispatch) => {
+  return axios
+    .get(`http://localhost:8000/api/recipes?q=${searchTerm}`)
+    .then((res) => {
+      const { recipe, media, group, ingredient, step } = normalize(
+        res.data,
+        recipesSchema,
+      ).entities;
+      dispatch(receiveMedias(media || initialMedia));
+      dispatch(receiveGroups(group || initialGroup));
+      dispatch(receiveIngredients(ingredient || initialIngredient));
+      dispatch(receiveSteps(step || initialStep));
+      return dispatch(receiveRecipes(recipe || initialState));
+    });
+};
+
 export const retrieveRecipes = () => (dispatch: Dispatch) => {
   return axios.get("http://localhost:8000/api/recipes").then((res) => {
     const { recipe, media, group, ingredient, step } = normalize(
