@@ -1,6 +1,6 @@
 {
   "name": "@syafiqtermizi/masak2-store",
-  "version": "1.2.102",
+  "version": "1.2.103",
   "description": "Masak2's redux store",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
