@@ -89,7 +89,7 @@ export const retrieveRecipe = (id: number) => (dispatch: Dispatch) => {
 export const reducer = (state = initialState, action: Action): RecipeState => {
   switch (action.type) {
     case "RECEIVE_RECIPES":
-      return { ...state, ...action.payload };
+      return { ...action.payload };
     default:
       return state;
   }
