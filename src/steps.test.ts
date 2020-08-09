@@ -8,7 +8,7 @@ const step = {
   },
 };
 
-test("action of type RECEIVE_STEPS should be dispatched", () => {
+test("action of type RECEIVE_STEPS should be dispatched when receiveSteps is called", () => {
   const action = receiveSteps(step);
   expect(action.type).toBe("RECEIVE_STEPS");
 });

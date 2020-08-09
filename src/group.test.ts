@@ -9,7 +9,7 @@ const group = {
   },
 };
 
-it("should dispatch an action with type RECEIVE_GROUP", () => {
+it("should dispatch an action with type RECEIVE_GROUP when receiveGroups is called", () => {
   const res = receiveGroups(group);
   expect(res.type).toBe("RECEIVE_GROUP");
 });

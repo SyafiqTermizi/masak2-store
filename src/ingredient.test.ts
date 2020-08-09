@@ -12,12 +12,12 @@ const ingredient = {
   },
 };
 
-test("action of types RECEIVE_INGREDIENT should be dispatched", () => {
+test("action of types RECEIVE_INGREDIENT should be dispatched when receiveIngredients is called", () => {
   const action = receiveIngredients(ingredient);
   expect(action.type).toBe("RECEIVE_INGREDIENT");
 });
 
-test("action of types TOGGLE_INGREDIENT should be dispatched", () => {
+test("action of types TOGGLE_INGREDIENT should be dispatched when toggleIngredient is called", () => {
   const action = toggleIngredient(1);
   expect(action.type).toBe("TOGGLE_INGREDIENT");
 });
