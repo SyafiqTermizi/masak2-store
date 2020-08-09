@@ -79,33 +79,10 @@ export const retrieveRecipe = (id: number) => (dispatch: Dispatch) => {
   });
 };
 
-export const searchRecipe = (searchTerm: string) => (dispatch: Dispatch) => {
-  return axios
-    .get(`http://localhost:8000/api/recipes?q=${searchTerm}`)
-    .then((res) => {
-      const { recipe, media, group, ingredient, step } = normalize(
-        res.data,
-        recipesSchema,
-      ).entities;
-      dispatch(receiveMedias(media || initialMedia));
-      dispatch(receiveGroups(group || initialGroup));
-      dispatch(receiveIngredients(ingredient || initialIngredient));
-      dispatch(receiveSteps(step || initialStep));
-      return dispatch(receiveSearchResult(recipe || initialState));
-    });
-};
-
-export const receiveSearchResult = (recipes: RecipeState) => ({
-  type: "RECEIVE_SEARCH_RESULT",
-  payload: recipes,
-});
-
 export const reducer = (state = initialState, action: Action): RecipeState => {
   switch (action.type) {
     case "RECEIVE_RECIPES":
       return { ...state, ...action.payload };
-    case "RECEIVE_SEARCH_RESULT":
-      return { ...action.payload };
     default:
       return state;
   }
