@@ -1,4 +1,5 @@
 import axios from "axios";
+import { store } from "./index";
 import { normalize } from "normalizr";
 import { Dispatch } from "redux";
 
@@ -51,10 +52,10 @@ export const receiveRecipes = (recipes: RecipeState) => ({
   payload: recipes,
 });
 
-export const retrieveRecipes = (searchParam: string = "") => (
-  dispatch: Dispatch,
-) => {
+export const retrieveRecipes = () => (dispatch: Dispatch) => {
   let url = "http://localhost:8000/api/recipes";
+  const searchParam = store.getState().search.searchTerm;
+
   if (searchParam) {
     url = `${url}?q=${searchParam}`;
   }
