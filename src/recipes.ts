@@ -51,8 +51,15 @@ export const receiveRecipes = (recipes: RecipeState) => ({
   payload: recipes,
 });
 
-export const retrieveRecipes = () => (dispatch: Dispatch) => {
-  return axios.get("http://localhost:8000/api/recipes").then((res) => {
+export const retrieveRecipes = (searchParam: string = "") => (
+  dispatch: Dispatch,
+) => {
+  let url = "http://localhost:8000/api/recipes";
+  if (searchParam) {
+    url = `${url}?q=${searchParam}`;
+  }
+
+  return axios.get(url).then((res) => {
     const { recipe, media, group, ingredient, step } = normalize(
       res.data,
       recipesSchema,
