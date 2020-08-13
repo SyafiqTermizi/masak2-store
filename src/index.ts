@@ -7,6 +7,7 @@ import { reducer as step, StepState } from "./steps";
 import { reducer as media, MediaState } from "./medias";
 import { reducer as ingredient, IngredientState } from "./ingredients";
 import { reducer as search, SearchState } from "./search";
+import { reducer as tag, Tag } from "./tags";
 
 export interface StateTree {
   recipe: RecipeState;
@@ -15,6 +16,7 @@ export interface StateTree {
   step: StepState;
   media: MediaState;
   search: SearchState;
+  tag: Tag[];
 }
 
 const reducer = combineReducers({
@@ -24,6 +26,7 @@ const reducer = combineReducers({
   step,
   media,
   search,
+  tag,
 });
 
 export const store = createStore(reducer, applyMiddleware(thunkMiddleware));
