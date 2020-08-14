@@ -2,8 +2,9 @@ import axios from "axios";
 import { Dispatch } from "redux";
 
 export interface Tag {
-  id: number;
+  id?: number;
   name: string;
+  image?: string;
 }
 
 export interface Action {
