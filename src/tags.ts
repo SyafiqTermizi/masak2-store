@@ -26,7 +26,7 @@ export const retrieveTags = () => (dispatch: Dispatch) => {
 export const reducer = (state: Tag[] = [], action: Action): Tag[] => {
   switch (action.type) {
     case "RECEIVE_TAGS":
-      return [...state, ...action.payload];
+      return [...action.payload];
     default:
       return state;
   }

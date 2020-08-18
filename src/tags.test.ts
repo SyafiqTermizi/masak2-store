@@ -21,11 +21,11 @@ test("reducer should return default state if weird action is dispatched", () => 
   expect(state[0].name).toBe("tags");
 });
 
-test("reducer should return new state if RECEIVE_TAGS action is dispatched", () => {
+test("reducer should replace current state if RECEIVE_TAGS action is dispatched", () => {
   const action = {
     type: "RECEIVE_TAGS",
     payload: [{ id: 2, name: "new state" }],
   };
   const state = reducer(dummyState, action);
-  expect(state[1].name).toBe("new state");
+  expect(state[0].name).toBe("new state");
 });
