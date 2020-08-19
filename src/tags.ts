@@ -17,10 +17,17 @@ export interface SelectAction {
   payload: string;
 }
 
+export interface TagState {
+  selectedTagName: string;
+  tags: Tag[];
+}
+
 export const selectTag = (tagName: string): SelectAction => ({
   type: "SELECT_TAG",
   payload: tagName,
 });
+
+export const clearSelectedTag = () => ({ type: "CLEAR_SELECTED_TAG" });
 
 export const receiveTags = (tags: Tag[]): ReceiveAction => ({
   type: "RECEIVE_TAGS",
@@ -32,11 +39,6 @@ export const retrieveTags = () => (dispatch: Dispatch) => {
     .get("http://localhost:8000/api/tags")
     .then((res) => dispatch(receiveTags(res.data)));
 };
-
-export interface TagState {
-  selectedTagName: string;
-  tags: Tag[];
-}
 
 const initialState: TagState = {
   selectedTagName: "",
@@ -52,6 +54,8 @@ export const reducer = (
       return { ...state, tags: action.payload };
     case "SELECT_TAG":
       return { ...state, selectedTagName: action.payload };
+    case "CLEAR_SELECTED_TAG":
+      return { ...state, selectedTagName: "" };
     default:
       return state;
   }

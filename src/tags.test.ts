@@ -1,4 +1,4 @@
-import { receiveTags, selectTag, reducer } from "./tags";
+import { receiveTags, selectTag, reducer, clearSelectedTag } from "./tags";
 
 const tags = [
   {
@@ -44,4 +44,16 @@ test("reducer should replace current state if RECEIVE_TAGS action is dispatched"
   };
   const state = reducer(dummyState, action);
   expect(state.tags[0].name).toBe("new state");
+});
+
+test("action of type CLEAR_SELECTED_TAG should be dispatched when clearSelectedTag is called", () => {
+  const action = clearSelectedTag();
+  expect(action.type).toBe("CLEAR_SELECTED_TAG");
+});
+
+test("selectedTagName property should be empty when CLEAR_SELECTED_TAG is dispatched", () => {
+  const currState = { ...dummyState, selectedTagName: "exist" };
+  const action = { type: "CLEAR_SELECTED_TAG" };
+  const state = reducer(currState, action);
+  expect(state.selectedTagName).toBeFalsy();
 });
