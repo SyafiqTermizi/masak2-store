@@ -16,7 +16,7 @@ export interface StateTree {
   step: StepState;
   media: MediaState;
   search: SearchState;
-  tag: TagState[];
+  tag: TagState;
 }
 
 const reducer = combineReducers({
