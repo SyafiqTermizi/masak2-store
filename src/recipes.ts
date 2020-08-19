@@ -53,12 +53,9 @@ export const receiveRecipes = (recipes: RecipeState) => ({
 });
 
 export const retrieveRecipes = () => (dispatch: Dispatch) => {
-  let url = "http://localhost:8000/api/recipes";
   const searchParam = store.getState().search.searchTerm;
-
-  if (searchParam) {
-    url = `${url}?q=${searchParam}`;
-  }
+  const tagFilter = store.getState().tag.selectedTagName;
+  let url = `http://localhost:8000/api/recipes?q=${searchParam}&t=${tagFilter}`;
 
   return axios.get(url).then((res) => {
     const { recipe, media, group, ingredient, step } = normalize(
