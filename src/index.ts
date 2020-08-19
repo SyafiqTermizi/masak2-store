@@ -7,7 +7,7 @@ import { reducer as step, StepState } from "./steps";
 import { reducer as media, MediaState } from "./medias";
 import { reducer as ingredient, IngredientState } from "./ingredients";
 import { reducer as search, SearchState } from "./search";
-import { reducer as tag, Tag } from "./tags";
+import { reducer as tag, TagState } from "./tags";
 
 export interface StateTree {
   recipe: RecipeState;
@@ -16,7 +16,7 @@ export interface StateTree {
   step: StepState;
   media: MediaState;
   search: SearchState;
-  tag: Tag[];
+  tag: TagState[];
 }
 
 const reducer = combineReducers({
