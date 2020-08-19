@@ -1,15 +1,31 @@
-import { receiveTags, reducer } from "./tags";
+import { receiveTags, selectTag, reducer } from "./tags";
 
-const dummyState = [
+const tags = [
   {
     id: 1,
     name: "tags",
   },
 ];
 
+const dummyState = {
+  selectedTagName: "test",
+  tags: [
+    {
+      id: 1,
+      name: "tags",
+    },
+  ],
+};
+
 test("action of types RECEIVE_TAGS should be dispatched when receiveTgas is called", () => {
-  const action = receiveTags(dummyState);
+  const action = receiveTags(tags);
   expect(action.type).toBe("RECEIVE_TAGS");
+});
+
+test("action of type SELECT_TAG should be dispatched when selecTag is called", () => {
+  const action = selectTag("name");
+  expect(action.payload).toBe("name");
+  expect(action.type).toBe("SELECT_TAG");
 });
 
 test("reducer should return default state if weird action is dispatched", () => {
@@ -18,7 +34,7 @@ test("reducer should return default state if weird action is dispatched", () => 
     payload: [{ id: 2, name: "blergh" }],
   };
   const state = reducer(dummyState, action);
-  expect(state[0].name).toBe("tags");
+  expect(state.tags[0].name).toBe("tags");
 });
 
 test("reducer should replace current state if RECEIVE_TAGS action is dispatched", () => {
@@ -27,5 +43,5 @@ test("reducer should replace current state if RECEIVE_TAGS action is dispatched"
     payload: [{ id: 2, name: "new state" }],
   };
   const state = reducer(dummyState, action);
-  expect(state[0].name).toBe("new state");
+  expect(state.tags[0].name).toBe("new state");
 });
