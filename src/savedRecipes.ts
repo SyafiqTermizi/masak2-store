@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Dispatch } from "redux";
+import { retrieveRecipe } from "./recipes";
 
 export interface SavedRecipes {
   id: number;
@@ -22,6 +23,16 @@ export const retrieveSavedRecipes = (userId: number) => (
 ) => {
   return axios
     .get(`http://localhost:8000/api/savedrecipes/${userId}`)
+    .then((res) => dispatch(receiveSavedRecipes(res.data)));
+};
+
+export const addSavedRecipe = (userId: number, recipeId: number) => (
+  dispatch: Dispatch,
+) => {
+  axios
+    .put(`http://localhost:8000/api/savedrecipes/${userId}`, {
+      recipe_id: recipeId,
+    })
     .then((res) => dispatch(receiveSavedRecipes(res.data)));
 };
 
