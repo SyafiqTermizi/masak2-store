@@ -32,7 +32,7 @@ export const addSavedRecipe = (
   recipeId: number,
 ) => (dispatch: Dispatch) => {
   axiosParam
-    .put(`http://localhost:8000/api/savedrecipes/${userId}`, {
+    .put(`/savedrecipes/${userId}`, {
       recipe_id: recipeId,
     })
     .then((res) => dispatch(receiveSavedRecipes(res.data)));
