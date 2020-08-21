@@ -1,6 +1,6 @@
 import axios from "axios";
+import { AxiosInstance } from "axios";
 import { Dispatch } from "redux";
-import { retrieveRecipe } from "./recipes";
 
 export interface SavedRecipes {
   id: number;
@@ -26,10 +26,12 @@ export const retrieveSavedRecipes = (userId: number) => (
     .then((res) => dispatch(receiveSavedRecipes(res.data)));
 };
 
-export const addSavedRecipe = (userId: number, recipeId: number) => (
-  dispatch: Dispatch,
-) => {
-  axios
+export const addSavedRecipe = (
+  axiosParam: AxiosInstance,
+  userId: number,
+  recipeId: number,
+) => (dispatch: Dispatch) => {
+  axiosParam
     .put(`http://localhost:8000/api/savedrecipes/${userId}`, {
       recipe_id: recipeId,
     })
