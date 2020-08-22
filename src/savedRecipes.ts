@@ -38,6 +38,16 @@ export const addSavedRecipe = (
     .then((res) => dispatch(receiveSavedRecipes(res.data)));
 };
 
+export const removeSavedRecipe = (
+  axiosParam: AxiosInstance,
+  userId: number,
+  recipeId: number,
+) => (dispatch: Dispatch) => {
+  axiosParam
+    .delete(`/savedrecipes/${userId}`, { data: { recipe_id: recipeId } })
+    .then((res) => dispatch(receiveSavedRecipes(res.data)));
+};
+
 const initialState: SavedRecipes = {
   id: 0,
   user: 0,
