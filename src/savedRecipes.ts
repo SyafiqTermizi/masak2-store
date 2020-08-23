@@ -22,7 +22,7 @@ export const retrieveSavedRecipes = (userId: number) => (
   dispatch: Dispatch,
 ) => {
   return axios
-    .get(`http://localhost:8000/api/savedrecipes/${userId}`)
+    .get(`${window.API_BASE_URL}/savedrecipes/${userId}`)
     .then((res) => dispatch(receiveSavedRecipes(res.data)));
 };
 

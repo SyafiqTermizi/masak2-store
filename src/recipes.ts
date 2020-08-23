@@ -55,7 +55,7 @@ export const receiveRecipes = (recipes: RecipeState) => ({
 export const retrieveRecipes = () => (dispatch: Dispatch) => {
   const searchParam = store.getState().search.searchTerm;
   const tagFilter = store.getState().tag.selectedTagName;
-  const url = `http://localhost:8000/api/recipes?q=${searchParam}&t=${tagFilter}`;
+  const url = `${window.API_BASE_URL}/recipes?q=${searchParam}&t=${tagFilter}`;
 
   return axios.get(url).then((res) => {
     const { recipe, media, group, ingredient, step } = normalize(
@@ -71,7 +71,7 @@ export const retrieveRecipes = () => (dispatch: Dispatch) => {
 };
 
 export const retrieveRecipe = (id: number) => (dispatch: Dispatch) => {
-  return axios.get(`http://localhost:8000/api/recipes/${id}`).then((res) => {
+  return axios.get(`${window.API_BASE_URL}/recipes/${id}`).then((res) => {
     const { recipe, media, group, ingredient, step } = normalize(
       res.data,
       recipeSchema,

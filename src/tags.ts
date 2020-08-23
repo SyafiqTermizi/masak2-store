@@ -36,7 +36,7 @@ export const receiveTags = (tags: Tag[]): ReceiveAction => ({
 
 export const retrieveTags = () => (dispatch: Dispatch) => {
   return axios
-    .get("http://localhost:8000/api/tags")
+    .get(`${window.API_BASE_URL}/tags`)
     .then((res) => dispatch(receiveTags(res.data)));
 };
 
