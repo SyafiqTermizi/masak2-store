@@ -12,6 +12,10 @@ import {
   reducer as savedRecipes,
   SavedRecipes as SavedRecipesState,
 } from "./savedRecipes";
+import {
+  reducer as madeRecipes,
+  MadeRecipes as MadeRecipesState,
+} from "./madeRecipes";
 
 export interface StateTree {
   recipe: RecipeState;
@@ -22,6 +26,7 @@ export interface StateTree {
   search: SearchState;
   tag: TagState;
   savedRecipes: SavedRecipesState;
+  madeRecipes: MadeRecipesState;
 }
 
 const reducer = combineReducers({
@@ -33,6 +38,7 @@ const reducer = combineReducers({
   search,
   tag,
   savedRecipes,
+  madeRecipes,
 });
 
 export const store = createStore(reducer, applyMiddleware(thunkMiddleware));
